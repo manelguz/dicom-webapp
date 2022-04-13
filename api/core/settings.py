@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'api',
     'images',
     #3rd part
-    'rest_framework'
+    'rest_framework',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -128,5 +129,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_URL = 'media'
+DEFAULT_FILE_STORAGE = 'core.storage_backends.AzureMediaStorage'
+
+MEDIA_LOCATION = "media"
+
+AZURE_ACCOUNT_NAME = os.environ["AZURE_ACCOUNT_NAME"] #"manelguzaccountstorage"
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
