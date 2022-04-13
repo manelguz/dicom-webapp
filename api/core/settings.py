@@ -135,6 +135,6 @@ DEFAULT_FILE_STORAGE = 'core.storage_backends.AzureMediaStorage'
 
 MEDIA_LOCATION = "media"
 
-AZURE_ACCOUNT_NAME = os.environ["AZURE_ACCOUNT_NAME"] #"manelguzaccountstorage"
+AZURE_ACCOUNT_NAME = os.environ["AZURE_ACCOUNT_NAME"]
 AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
 MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
