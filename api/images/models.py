@@ -5,8 +5,8 @@ from django.utils import timezone
 import os, uuid
 
 def user_directory_path(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = "%s.%s" % (uuid.uuid4(), ext)
+    if "." in filename:
+        filename = filename.split('.')[0]
     return os.path.join('images/', filename)
 
 class Category(models.Model):
@@ -17,13 +17,9 @@ class Category(models.Model):
 
 class Images(models.Model):
 
-    options = (
-        ('active','Active'),
-        ('deactivated', 'Deactivated'),
-    )
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
-    title =models.CharField(max_length=100)
+    name =models.CharField(max_length=100)
+    #file = models.FileField(upload_to=user_directory_path, default='images/default.jpg')
     image = models.ImageField(
-        upload_to=user_directory_path, default='posts/default.jpg')
+        upload_to=user_directory_path, default='images/default.jpg')
     created = models.DateTimeField(default=timezone.now)
-    status = models.CharField(max_length=11, choices=options, default='active')
