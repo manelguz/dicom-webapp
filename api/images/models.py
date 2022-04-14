@@ -1,8 +1,6 @@
-from turtle import title
-from unicodedata import category
 from django.db import models
 from django.utils import timezone
-import os, uuid
+import os
 
 def user_directory_path(instance, filename):
     if "." in filename:

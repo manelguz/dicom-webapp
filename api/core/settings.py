@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-daxzy-^#_38*k3+wmr(3ofxjk40@9^%r(4k%6#pye+25=937zz
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = ['https://*.azurewebsites.net']
+CORS_ALLOW_ALL_ORIGINS: True
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -45,7 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'storages',
 ]
-
+CORS_ORIGIN_ALLOW_ALL = True
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
