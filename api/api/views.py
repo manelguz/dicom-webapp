@@ -6,10 +6,8 @@ from rest_framework import generics
 from images.models import Images    
 from rest_framework.response import Response
 from rest_framework.parsers import FileUploadParser, FormParser, MultiPartParser
-from rest_framework.decorators import api_view
 from django.http import HttpResponse, HttpResponseBadRequest
-from PIL import Image
-from django.http import Http404, JsonResponse
+from django.http import JsonResponse, HttpResponseNotFound
 from django.core.exceptions import BadRequest
 
 
@@ -23,14 +21,14 @@ class ImageAPIView(generics.RetrieveAPIView):
         try:
             data = Images.objects.get(name=self.kwargs['id']).image
         except Images.DoesNotExist:
-            raise Http404("Image does not exist")
+            return HttpResponseNotFound("Image does not exist")
         return Response(data, content_type='image/jpg')
 
     def delete(self, request, *args, **kwargs):
         try:
             object_data = Images.objects.get(name=self.kwargs['id'])
         except Images.DoesNotExist:
-            raise Http404("Image does not exist")
+            return HttpResponseNotFound("Image does not exist")
         object_data.image.delete()
         object_data.delete()
         return HttpResponse("Image Correctly deleted", content_type="text/plain")
