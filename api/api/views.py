@@ -7,7 +7,7 @@ from django.http import JsonResponse, HttpResponseNotFound
 import base64
 
 
-class ImageAPIView(generics.RetrieveAPIView):
+class ImageAPIView(generics.GenericAPIView):
 
     parser_classes = [MultiPartParser, FormParser]
 
@@ -49,7 +49,7 @@ class ImageAPIView(generics.RetrieveAPIView):
         Images.objects.create(image=file, name=name, file_dicom=file)
         return HttpResponse("Image Correctly updated", content_type="text/plain")
 
-class ImageAPIList(generics.RetrieveAPIView):
+class ImageAPIList(generics.GenericAPIView):
 
     parser_classes = [MultiPartParser, FormParser]
 
