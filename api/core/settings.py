@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # custom apps 
     'api',
     'images',
+    'frontend', # enable the frontend app
     #3rd part
     'rest_framework',
     'storages',

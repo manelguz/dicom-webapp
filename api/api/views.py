@@ -31,7 +31,6 @@ class ImageAPIView(generics.GenericAPIView):
             object_data = Images.objects.get(name=self.kwargs['id'])
         except Images.DoesNotExist:
             return HttpResponseNotFound("Image does not exist")
-        object_data.image.delete()
         object_data.file_dicom.delete()
         object_data.delete()
         return HttpResponse("Image Correctly deleted", content_type="text/plain")
@@ -46,7 +45,7 @@ class ImageAPIView(generics.GenericAPIView):
         name = request.data['name']
         if Images.objects.filter(name=name).exists():
             return HttpResponseBadRequest('The image already exist with this id.')
-        Images.objects.create(image=file, name=name, file_dicom=file)
+        Images.objects.create(name=name, file_dicom=file)
         return HttpResponse("Image Correctly updated", content_type="text/plain")
 
 class ImageAPIList(generics.GenericAPIView):
