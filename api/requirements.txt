@@ -1,7 +1,0 @@
-django==4.0.4
-djangorestframework==3.13.1
-django-storages==1.12.3
-pillow==9.0.1
-azure
-azure-core
-azure-storage-blob==12.11.0
