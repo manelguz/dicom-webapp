@@ -35,6 +35,11 @@ class ImageAPIView(generics.GenericAPIView):
         object_data.delete()
         return HttpResponse("Image Correctly deleted", content_type="text/plain")
 
+
+class ImageAPIUpload(generics.GenericAPIView):
+
+    parser_classes = [MultiPartParser, FormParser]
+
     def post(self, request):
         """
         Method to save a new file to the database and the storage service. 
@@ -49,6 +54,7 @@ class ImageAPIView(generics.GenericAPIView):
             return HttpResponseBadRequest('The image already exist with this id.')
         Images.objects.create(name=name, file_dicom=file)
         return HttpResponse("Image Correctly updated", content_type="text/plain")
+
 
 class ImageAPIList(generics.GenericAPIView):
 
