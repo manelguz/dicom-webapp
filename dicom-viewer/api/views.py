@@ -41,6 +41,8 @@ class ImageAPIView(generics.GenericAPIView):
         The file is saved based on the name provided by the query.
         If the image alredy exist, return a 400 status code indicating the error
         """
+        if not 'file' in request.data or not 'name' in request.data:
+            return HttpResponseBadRequest('The file and name fields are needed')  
         file = request.data['file']
         name = request.data['name']
         if Images.objects.filter(name=name).exists():

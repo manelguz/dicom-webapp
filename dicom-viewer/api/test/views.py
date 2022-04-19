@@ -24,6 +24,15 @@ class TestUploadImage(TestCase):
             response = self.client.post('/api/', data=form)
         self.assertEqual(response.status_code, 400)
 
+    def test_post_with_missing_field(self):
+        with tempfile.NamedTemporaryFile() as f:
+            form = {
+                "file": f,
+            }
+            self.client.post('/api/',  data=form)
+            response = self.client.post('/api/', data=form)
+        self.assertEqual(response.status_code, 400)
+
 
 class TestListAllImages(TestCase):
 
