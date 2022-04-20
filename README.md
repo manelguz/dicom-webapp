@@ -9,6 +9,7 @@ coverage report
 
 # Docker
 docker build --build-arg azure_name=<> --build-arg azure_key=<>  --build-arg django_key=<>  . -t dicomapp
+docker run -it -p 8080 dicomapp
 
 ## To deploy de app to a webapp of azure
 
