@@ -138,7 +138,7 @@ Docker:
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-## Deploy on Axure account
+## Deploy on Azure web app platform
   ```sh
     az webapp up -g $group-name -l westeurope -p $plan-name -r 'PYTHON:3.8'
     az webapp config appsettings set --settings AZURE_ACCOUNT_NAME=$AZURE_ACCOUNT_NAME AZURE_ACCOUNT_KEY=$AZURE_ACCOUNT_KEY SECRET_KEY=$SECRET_KEY
