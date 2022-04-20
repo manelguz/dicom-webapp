@@ -1,0 +1,100 @@
+openapi: 3.0.0
+info:
+  version: '1'
+  title: Dicom webapp api
+  description: dicom file manager to upload, serve, delete and list the image on the server.
+servers:
+  - url: 'https://dicom-image-webapp.azurewebsites.net/api/'
+
+
+paths:
+  /:
+    post:
+      summary: upload a dicom image to the server
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  description: image file
+                  format: binary
+                name:
+                  type: string
+
+      responses: 
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Bad Request. The file and name fields are needed.
+        '409':
+          description: Bad Request. The image already exists.
+
+  /list:
+    get:
+      summary: list all avaliable image in the server
+      responses:
+        '200':
+          description: the list of images
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  all_images:
+                    type: array
+                    items:
+                      type: string
+
+  /id/{id}:
+    get:
+      summary: get the image with the given id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: image name
+      responses:
+        '200':
+          description: A JSON object containing image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dicom_img:          # <-- image embedded into JSON
+                    type: string
+                    format: byte
+                    description: Base64-encoded contents of the image
+
+        '404':
+          description: Image not found.
+
+
+
+    delete:
+      summary: delete the image with the given id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: image name
+      responses:
+        '200':
+          description: Image correctly deleted
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Image not found.
