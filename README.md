@@ -1,22 +1,3 @@
-# dicom-webapp
-A Django rest api based webapp to upload and visualize DICOM images
-
-# Test
-
-coverage run --source='.' manage.py test
-coverage report
-
-# Docker
-docker build --build-arg azure_name=$AZURE_ACCOUNT_NAME --build-arg azure_key=$AZURE_ACCOUNT_KEY  --build-arg django_key=$SECRET_KEY  . -t dicomapp
-docker run -it -p 8080 dicomapp
-
-## To deploy de app to a webapp of azure
-
-az webapp up -g $group-name -l westeurope -p $plan-name -r 'PYTHON:3.8'
-az webapp config appsettings set --settings AZURE_ACCOUNT_NAME=$AZURE_ACCOUNT_NAME AZURE_ACCOUNT_KEY=$AZURE_ACCOUNT_KEY SECRET_KEY=$SECRET_KEY
-
-
-
 <div id="top"></div>
 
   <h3 align="center">Dicom web app</h3>
