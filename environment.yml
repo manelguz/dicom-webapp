@@ -8,7 +8,8 @@ dependencies:
   - asgiref=3.5.0=pyhd8ed1ab_0
   - backports=1.0=py_2
   - backports.zoneinfo=0.2.1=py38h497a2fe_3
-  - ca-certificates=2021.10.8=ha878542_0
+  - ca-certificates=2022.3.29=h06a4308_0
+  - coverage=6.3.2=py38h7f8727e_0
   - django=4.0.4=py38h578d9bd_0
   - django-storages=1.12.3=pyhd8ed1ab_0
   - djangorestframework=3.13.1=pyhd8ed1ab_0
@@ -146,4 +147,4 @@ dependencies:
     - requests-oauthlib==1.3.1
     - six==1.16.0
     - urllib3==1.26.9
-prefix: /home/manelguz/miniconda3/envs/django-env
+    - whitenoise==6.0.0
