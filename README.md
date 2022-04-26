@@ -122,7 +122,7 @@ Docker:
 
   ```sh
     docker build --build-arg azure_name=$AZURE_ACCOUNT_NAME --build-arg azure_key=$AZURE_ACCOUNT_KEY  --build-arg django_key=$SECRET_KEY  . -t dicomapp
-    docker run -it -p 8080 dicomapp
+    docker run -it -p 8080:8080 dicomapp
   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
